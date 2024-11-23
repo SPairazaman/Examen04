@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,6 +22,13 @@ namespace Examen04
 
         private void btmBuscar_Click(object sender, EventArgs e)
         {
+            if (!Regex.IsMatch(txtIdProducto.Text, "^[0-9]+$"))
+            {
+                MessageBox.Show("Por favor, ingrese solo números.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIdProducto.Text = "";
+                return;
+            }
+
             SqlCommand sqlCommand = null;
             SqlParameter sqlParameterID = null;
 
